@@ -1,5 +1,7 @@
 # vue-blog
 
+A simple Vue.js blog app
+
 ## Project setup
 ```
 npm install
