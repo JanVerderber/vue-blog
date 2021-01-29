@@ -11,10 +11,7 @@ import { onMounted } from 'vue'
 import SinglePost from './SinglePost.vue'
 export default {
     props: ['posts'],
-    components: { SinglePost },
-    setup(props) {
-        onMounted(() => console.log('component mounted'))
-    }
+    components: { SinglePost }
 }
 </script>
 

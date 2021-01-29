@@ -7,23 +7,27 @@
     <div v-if="posts.length">
       <PostList :posts="posts" />
     </div>
-    <div v-else>Loading...</div>
+    <div v-else>Loading posts...</div>
   </div>
 </template>
 
 <script>
 import PostList from '../components/PostList.vue'
-import getPosts from '../composables/getPosts'
 
 export default {
   name: 'Home',
   components: { PostList },
-  setup() {
-    const { posts, error, load } = getPosts()
+  data() {
+      return {
+          posts: []
+      }
+  },
+  mounted() {
+        var storedPosts = localStorage.getItem('posts')
 
-    load()
-
-    return { posts, error }
-  }
+        if (storedPosts) {
+            this.posts = JSON.parse(storedPosts)
+        }
+    },
 }
 </script>

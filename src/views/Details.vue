@@ -7,17 +7,32 @@
 </template>
 
 <script>
-import getPost from '../composables/getPost'
 
 export default {
-    props: ['id'],
-    setup(props) {
-        const { post, error, load } = getPost(props.id)
+  name: 'Details',
+  props: ['id'],
+  data() {
+      return {
+          post: '',
+          error: ''
+      }
+  },
+  mounted() {
+        var storedPosts = localStorage.getItem('posts')
 
-        load()
+        if (storedPosts) {
+            var posts = JSON.parse(storedPosts)
 
-        return { post, error }
-    }
+            for (var i = 0; i < posts.length; i++) {
+                if (posts[i].id == this.id) {
+                    this.post = posts[i];
+                }
+            }
+        }
+        else {
+            this.error = "This post does not exist"
+        }
+    },
 }
 </script>
 
