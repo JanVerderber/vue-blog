@@ -1,23 +1,27 @@
 <template>
   <div v-if="error">{{ error }}</div>
-  <div v-if="post" class="post">
-      <h3>{{ post.title }}</h3>
-      <p class="pre">{{ post.body }}</p>
-      <br>
-      <span v-for="tag in post.tags" :key="tag">
-            #{{ tag }}
-        </span>
+  <div v-if="posts" class="post">
+      <div class="post-list">
+        <div v-for="post in posts" :key="post.id">
+            <SinglePost :post="post" />
+        </div>
+      </div>
+  </div>
+  <div v-else>
+      <p>No posts found...</p>
   </div>
 </template>
 
 <script>
+import SinglePost from '../components/SinglePost.vue'
 
 export default {
-  name: 'Details',
-  props: ['id'],
+  name: 'Tags',
+  props: ['tag'],
+  components: { SinglePost },
   data() {
       return {
-          post: '',
+          posts: [],
           error: ''
       }
   },
@@ -26,17 +30,18 @@ export default {
 
         if (storedPosts) {
             var posts = JSON.parse(storedPosts)
-
+            console.log(String(this.tag))
+            
             for (var i = 0; i < posts.length; i++) {
-                if (posts[i].id == this.id) {
-                    this.post = posts[i];
+                if (posts[i].tags.includes(this.tag)) {
+                    this.posts.push(posts[i]);
                 }
             }
         }
         else {
-            this.error = "This post does not exist"
+            this.error = "TEST..."
         }
-    },
+    }
 }
 </script>
 

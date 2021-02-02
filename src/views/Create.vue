@@ -1,4 +1,5 @@
 <template>
+    <h1>Create a new post</h1>
     <form @submit.prevent="handleSubmit">
         <label>Title:</label>
         <input type="text" required v-model="title"><br>
@@ -64,7 +65,7 @@ export default {
             this.id++
             this.title = ''
             this.body = ''
-            
+
             alert("Post has been successfully added!");
         }
     }   
