@@ -1,13 +1,14 @@
 <template>
     <form @submit.prevent="handleSubmit">
         <label>Title:</label>
-        <input type="text" required v-model="title">
+        <input type="text" required v-model="title"><br>
 
-        <label>Body:</label>
-        <textarea required v-model="body" rows="4" cols="50">
-        </textarea>
+        <label>Body:</label><br>
+        <textarea required v-model="body" rows="10" cols="55">
+        </textarea><br>
 
-        <label>Tags:</label>
+        <label>Tags:</label><br>
+        <i>Write a tag and then press ALT + "comma"</i>
         <input type="text" v-model="tempTag" @keyup.alt="addTag">
         <div v-for="tag in tags" :key="tag" class="pill">
             {{ tag }}<span style="color: red" @click="removeTag(tag)"> x</span>
@@ -56,13 +57,15 @@ export default {
             this.tags.splice(this.tags.indexOf(tagToRemove), 1);
         },
         handleSubmit() {
-            const newPost = { id: this.id, title: this.title, body: this.body }
+            const newPost = { id: this.id, title: this.title, body: this.body, tags: this.tags }
             this.posts.push(newPost)
             localStorage.setItem('posts', JSON.stringify(this.posts))
 
             this.id++
             this.title = ''
             this.body = ''
+            
+            alert("Post has been successfully added!");
         }
     }   
 }
@@ -85,6 +88,13 @@ export default {
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: bold;
+    }
+    i {
+        color: #aaa;
+        display: inline-block;
+        margin: 25px 0 15px;
+        font-size: 0.6em;
+        letter-spacing: 1px;
     }
     input, select {
         display: block;

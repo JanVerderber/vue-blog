@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <h1>Welcome to Jan's Vue.js Blog</h1>
     <div v-if="error">
       {{ error }}
     </div>
@@ -31,3 +31,7 @@ export default {
     },
 }
 </script>
+
+<style>
+
+</style>
