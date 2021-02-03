@@ -5,8 +5,10 @@
       <p class="pre">{{ post.body }}</p>
       <br>
       <span v-for="tag in post.tags" :key="tag">
+        <router-link :to="{ name: 'Tags', params: { tag: tag }}" class="tag-item">
             #{{ tag }}
-        </span>
+        </router-link> 
+      </span>
   </div>
 </template>
 
@@ -52,5 +54,12 @@ export default {
     }
     .pre {
         white-space: pre-wrap;
+    }
+    .tag-item{
+        color: #2c3e50;
+        margin: 3px;
+    }
+    .tag-item:hover{
+        color: #5e748a;
     }
 </style>

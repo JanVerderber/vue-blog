@@ -5,7 +5,7 @@
         </router-link>
         <p>{{ snippet }}</p>
         <span v-for="tag in post.tags" :key="tag">
-            <router-link :to="{ name: 'Tags', params: { tag: tag }}">
+            <router-link :to="{ name: 'Tags', params: { tag: tag }}" class="tag-item">
                 #{{ tag }}
             </router-link>            
         </span>
@@ -46,5 +46,12 @@ export default {
 .blog-link:hover {
     color: #5e748a;
     text-decoration: underline;
+}
+.tag-item{
+    color: #2c3e50;
+    margin: 3px;
+}
+.tag-item:hover{
+    color: #5e748a;
 }
 </style>
